@@ -1,10 +1,10 @@
 <template>
   <div class="welcome">
-    <h1>{{ msg }}</h1>
-    <p>
+    <h1 class="title is-1">{{ msg }}</h1>
+    <p class="is-2">
       bla bla bla
     </p>
-    <h1>Hallo Philipp und Tamara!</h1>
+    <h1 class="subtitle is-1">Willkommen Philipp und Tamara!</h1>
   </div>
 </template>
 
