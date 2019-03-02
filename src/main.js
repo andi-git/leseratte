@@ -27,45 +27,28 @@ const store = new Vuex.Store({
           {
             id: 0,
             text: 'Was macht Max mit dem Dinosaurierknochen?',
-            correct: false,
             answers: [
-              {
-                id: 0,
-                text: 'Er malt ihn braun an damit er schön alt aussieht.',
-                correct: true,
-              },
-              {
-                id: 1,
-                text: 'Er wartet 1000000 Jahre damit er schön alt aussieht.',
-                correct: false,
-              },
-              {
-                id: 2,
-                text: 'Er kocht damit eine köstliche Suppe.',
-                correct: false,
-              },
+              { id: 0, text: 'Er malt ihn braun an damit er schön alt aussieht.', correct: true },
+              { id: 1, text: 'Er wartet 1 Million Jahre damit er schön alt aussieht.', correct: false },
+              { id: 2, text: 'Er kocht damit eine köstliche Suppe.', correct: false },
             ],
           },
           {
             id: 1,
             text: 'Warum will Max dem Leon einen Streich spielen?',
-            correct: false,
             answers: [
-              {
-                id: 0,
-                text: 'Weil Max immer lustig ist.',
-                correct: false,
-              },
-              {
-                id: 1,
-                text: 'Weil Leon den Max immer ärgert.',
-                correct: true,
-              },
-              {
-                id: 2,
-                text: 'Weil heute der 1. April ist.',
-                correct: false,
-              },
+              { id: 0, text: 'Weil Max immer lustig ist.', correct: false },
+              { id: 1, text: 'Weil Leon den Max immer ärgert.', correct: true },
+              { id: 2, text: 'Weil heute der 1. April ist.', correct: false },
+            ],
+          },
+          {
+            id: 2,
+            text: 'Vertragen sich Max und Leon am Ende wieder?',
+            answers: [
+              { id: 0, text: 'Nein, sie streiten ganz wild weiter.', correct: false },
+              { id: 1, text: 'Ja, sie reichen sich die Hände.', correct: true },
+              { id: 2, text: 'Nein, sie werden von einem Dinosaurier gefressen.', correct: false },
             ],
           },
         ],

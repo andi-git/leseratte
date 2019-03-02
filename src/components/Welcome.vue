@@ -45,39 +45,72 @@
           </div>
         </div>
         <div class="tile is-parent is-7 is-vertical">
-          <div class="tile is-child box answer" v-on:click="selectAnswer1">
+          <div class="tile is-child box answer " v-bind:class="{'is-active': isAnswer1Selected}"
+               v-on:click="selectAnswer1">
             <div class="media">
               <div class="media-left" v-if="isAnswer1Selected">
-              <span class="icon">
-              <i class="fas fa-bullseye fa-1x"></i>
-              </span>
+                <span class="icon">
+                  <i class="fas fa-arrow-right fa-1x"></i>
+                </span>
+              </div>
+              <div class="media-left" v-if="!isAnswer1Selected">
+                <span class="icon">
+                  <i class="fas fa-question fa-1x"></i>
+                </span>
               </div>
               <div class="media-content">
                 {{ answer0Text }}
               </div>
+              <div class="media-right" v-if="isAnswer1Selected">
+                <span class="icon">
+                  <i class="fas fa-arrow-left fa-1x"></i>
+                </span>
+              </div>
             </div>
           </div>
-          <div class="tile is-child box answer" v-on:click="selectAnswer2">
+          <div class="tile is-child box answer" v-bind:class="{'is-active': isAnswer2Selected}"
+               v-on:click="selectAnswer2">
             <div class="media">
               <div class="media-left" v-if="isAnswer2Selected">
-              <span class="icon">
-              <i class="fas fa-bullseye fa-1x"></i>
-              </span>
+                <span class="icon">
+                  <i class="fas fa-arrow-right fa-1x"></i>
+                </span>
+              </div>
+              <div class="media-left" v-if="!isAnswer2Selected">
+                <span class="icon">
+                  <i class="fas fa-question fa-1x"></i>
+                </span>
               </div>
               <div class="media-content">
                 {{ answer1Text }}
               </div>
+              <div class="media-right" v-if="isAnswer2Selected">
+                <span class="icon">
+                  <i class="fas fa-arrow-left fa-1x"></i>
+                </span>
+              </div>
             </div>
           </div>
-          <div class="tile is-child box answer" v-on:click="selectAnswer3">
+          <div class="tile is-child box answer" v-bind:class="{'is-active': isAnswer3Selected}"
+               v-on:click="selectAnswer3">
             <div class="media">
               <div class="media-left" v-if="isAnswer3Selected">
-              <span class="icon">
-              <i class="fas fa-bullseye fa-1x"></i>
-              </span>
+                <span class="icon">
+                  <i class="fas fa-arrow-right fa-1x"></i>
+                </span>
+              </div>
+              <div class="media-left" v-if="!isAnswer3Selected">
+                <span class="icon">
+                  <i class="fas fa-question fa-1x"></i>
+                </span>
               </div>
               <div class="media-content">
                 {{ answer2Text }}
+              </div>
+              <div class="media-right" v-if="isAnswer3Selected">
+                <span class="icon">
+                  <i class="fas fa-arrow-left fa-1x"></i>
+                </span>
               </div>
             </div>
           </div>
@@ -200,5 +233,9 @@
 
   .nobox
     box-shadow: none
+
+  .is-active
+    background-color: $primary
+    color: white
 
 </style>

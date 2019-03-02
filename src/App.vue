@@ -89,4 +89,8 @@
   @import '../node_modules/bulma/bulma.sass'
   @import 'mq'
 
+  .footer
+    padding: 1em
+    margin-top: 1em
+
 </style>
