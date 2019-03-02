@@ -12,6 +12,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'indent': 'off',
     'vue/script-indent': ["error", 2, {"baseIndent": 1}],
+    'no-param-reassign': [2, { "props": false }]
   },
   parserOptions: {
     parser: 'babel-eslint',

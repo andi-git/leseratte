@@ -3,20 +3,17 @@
     <div class="tile is-ancestor nobox">
       <div class="tile is-parent is-2 has-text-centered nobox">
         <article class="tile is-child nobox">
-          <img src="../assets/lesetiger_dinosauriergeschichten.jpg"/>
+          <img v-bind:src="quizImage"/>
         </article>
       </div>
       <div class="tile is-parent is-4">
         <article class="tile is-child nobox">
-          <p class="title is-2">Quiz: Dinosauriergeschichten</p>
+          <p class="title is-2">Quiz: {{ quizBookName }}</p>
         </article>
       </div>
       <div class="tile is-parent is-6">
         <article class="tile is-child nobox">
-          <p>Als Pia das große brane Ei auf dem Markt entdeckt, ist ihr sofort klar: Damit muss es etwas Besonderes auf
-            sich haben. Und tatsächlich schlüpft mitten in der Nacht ein echter Dinosaurier heraus!</p>
-          <p>Auch für Tobi wird es spannend. Er geht nämlich auf Fossilien-Jagd und macht Dabei einen außergewöhnlichen
-            Fund...</p>
+          {{ quizSummary }}
         </article>
       </div>
     </div>
@@ -36,12 +33,12 @@
                       </div>
                     </div>
                     <div class="tile is-parent">
-                      <p class="title is-3">Frage 1 von 10</p>
+                      <p class="title is-3">Frage {{ questionNumber }} von {{ questionCount }}</p>
                     </div>
                   </div>
                 </div>
                 <div class="tile is-child">
-                  Was macht Max mit dem Dinosaurierknochen?
+                  {{ questionText }}
                 </div>
               </div>
             </div>
@@ -56,7 +53,7 @@
               </span>
               </div>
               <div class="media-content">
-                Er malt ihn braun an damit er schön alt aussieht.
+                {{ answer0Text }}
               </div>
             </div>
           </div>
@@ -68,7 +65,7 @@
               </span>
               </div>
               <div class="media-content">
-                Er wartet 1000000 Jahre damit er schön alt aussieht.
+                {{ answer1Text }}
               </div>
             </div>
           </div>
@@ -80,7 +77,7 @@
               </span>
               </div>
               <div class="media-content">
-                Er kocht damit eine köstliche Suppe.
+                {{ answer2Text }}
               </div>
             </div>
           </div>
@@ -91,11 +88,6 @@
         </div>
       </div>
     </div>
-    <h1 class="title is-1">{{ msg }}</h1>
-    <p class="is-2">
-      bla bla bla
-    </p>
-    <h1 class="subtitle is-1">Willkommen Philipp und Tamara!</h1>
   </div>
 </template>
 
@@ -129,7 +121,50 @@
         this.isAnswer3Selected = true;
       },
       nextQuestion() {
-        this.msg = 'next';
+        this.$store.commit('nextQuestion');
+      },
+    },
+    computed: {
+      count() {
+        return this.$store.state.count;
+      },
+      currentQuestionText() {
+        return this.$store.state.currentQuestionText;
+      },
+      currentQuiz() {
+        return this.$store.state.quizzes
+          .find(quiz => quiz.id === this.$store.state.currentQuiz);
+      },
+      quizImage() {
+        return `../books/${this.currentQuiz.image}`;
+      },
+      quizBookName() {
+        return this.currentQuiz.bookName;
+      },
+      quizSummary() {
+        return this.currentQuiz.summary;
+      },
+      currentQuestion() {
+        return this.currentQuiz.questions
+          .find(question => question.id === this.$store.state.currentQuestion);
+      },
+      questionNumber() {
+        return this.currentQuestion.id + 1;
+      },
+      questionCount() {
+        return this.currentQuiz.questions.length;
+      },
+      questionText() {
+        return this.currentQuestion.text;
+      },
+      answer0Text() {
+        return this.currentQuestion.answers[0].text;
+      },
+      answer1Text() {
+        return this.currentQuestion.answers[1].text;
+      },
+      answer2Text() {
+        return this.currentQuestion.answers[2].text;
       },
     },
   };
