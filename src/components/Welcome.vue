@@ -6,15 +6,17 @@
           <img src="../assets/lesetiger_dinosauriergeschichten.jpg"/>
         </article>
       </div>
-      <div class="tile is-parent is-6">
-        <article class="tile is-child nobox">
-          <p class="title is-2">Quiz: Dinosauriergeschichten</p>
-          <p class="subtitle is-2">Frage x/y</p>
-        </article>
-      </div>
       <div class="tile is-parent is-4">
         <article class="tile is-child nobox">
-          <p>Und hier eine kurze Zusammenfassung des Buches...</p>
+          <p class="title is-2">Quiz: Dinosauriergeschichten</p>
+        </article>
+      </div>
+      <div class="tile is-parent is-6">
+        <article class="tile is-child nobox">
+          <p>Als Pia das große brane Ei auf dem Markt entdeckt, ist ihr sofort klar: Damit muss es etwas Besonderes auf
+            sich haben. Und tatsächlich schlüpft mitten in der Nacht ein echter Dinosaurier heraus!</p>
+          <p>Auch für Tobi wird es spannend. Er geht nämlich auf Fossilien-Jagd und macht Dabei einen außergewöhnlichen
+            Fund...</p>
         </article>
       </div>
     </div>
@@ -22,14 +24,25 @@
       <div class="tile is-parent">
         <div class="tile is-parent is-5 is-vertical">
           <div class="tile is-child question">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-64x64">
-                  <img src="../assets/leseratte.png"/>
-                </figure>
-              </div>
-              <div class="media-content">
-                Hier eine ganz schön schwere Frage!
+            <div class="tile is-ancestor">
+              <div class="tile is-parent is-vertical">
+                <div class="tile">
+                  <div class="tile is-parent">
+                    <div class="media">
+                      <div class="media-left">
+                        <figure class="image is-64x64">
+                          <img src="../assets/leseratte.png"/>
+                        </figure>
+                      </div>
+                    </div>
+                    <div class="tile is-parent">
+                      <p class="title is-3">Frage 1 von 10</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tile is-child">
+                  Was macht Max mit dem Dinosaurierknochen?
+                </div>
               </div>
             </div>
           </div>
@@ -43,7 +56,7 @@
               </span>
               </div>
               <div class="media-content">
-                Die erste Antwort...
+                Er malt ihn braun an damit er schön alt aussieht.
               </div>
             </div>
           </div>
@@ -55,7 +68,7 @@
               </span>
               </div>
               <div class="media-content">
-                Die zweite Antwort...
+                Er wartet 1000000 Jahre damit er schön alt aussieht.
               </div>
             </div>
           </div>
@@ -67,7 +80,7 @@
               </span>
               </div>
               <div class="media-content">
-                Die dritte Antwort...
+                Er kocht damit eine köstliche Suppe.
               </div>
             </div>
           </div>
@@ -144,9 +157,13 @@
     border-radius: 6px
     padding: 1.25rem
 
+  .question-number
+    height: 100%
+
   .next-answer
     width: 100%
 
   .nobox
     box-shadow: none
+
 </style>
