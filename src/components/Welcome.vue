@@ -1,22 +1,27 @@
 <template>
   <div class="welcome">
-    <div class="tile is-ancestor">
-      <div class="tile is-parent is-2 has-text-centered">
-        <article class="tile is-child box">
+    <div class="tile is-ancestor nobox">
+      <div class="tile is-parent is-2 has-text-centered nobox">
+        <article class="tile is-child nobox">
           <img src="../assets/lesetiger_dinosauriergeschichten.jpg"/>
         </article>
       </div>
-      <div class="tile is-parent">
-        <article class="tile is-child box">
-          <p class="title">Quiz: Dinosauriergeschichten</p>
-          <p class="subtitle">Frage x/y</p>
+      <div class="tile is-parent is-6">
+        <article class="tile is-child nobox">
+          <p class="title is-2">Quiz: Dinosauriergeschichten</p>
+          <p class="subtitle is-2">Frage x/y</p>
+        </article>
+      </div>
+      <div class="tile is-parent is-4">
+        <article class="tile is-child nobox">
+          <p>Und hier eine kurze Zusammenfassung des Buches...</p>
         </article>
       </div>
     </div>
-    <div class="columns">
-      <div class="column">
-        <div class="card question title is-3">
-          <div class="card-content">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent">
+        <div class="tile is-parent is-5 is-vertical">
+          <div class="tile is-child question">
             <div class="media">
               <div class="media-left">
                 <figure class="image is-64x64">
@@ -29,57 +34,50 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="column">
-        <div class="card answer title is-3" v-on:click="selectAnswer1">
-          <div class="card-content">
+        <div class="tile is-parent is-7 is-vertical">
+          <div class="tile is-child box answer" v-on:click="selectAnswer1">
             <div class="media">
               <div class="media-left" v-if="isAnswer1Selected">
-            <span class="icon">
+              <span class="icon">
               <i class="fas fa-bullseye fa-1x"></i>
-            </span>
+              </span>
               </div>
               <div class="media-content">
                 Die erste Antwort...
               </div>
             </div>
           </div>
-        </div>
-        <div class="card answer title is-3" v-on:click="selectAnswer2">
-          <div class="card-content">
+          <div class="tile is-child box answer" v-on:click="selectAnswer2">
             <div class="media">
               <div class="media-left" v-if="isAnswer2Selected">
-            <span class="icon">
+              <span class="icon">
               <i class="fas fa-bullseye fa-1x"></i>
-            </span>
+              </span>
               </div>
               <div class="media-content">
                 Die zweite Antwort...
               </div>
             </div>
           </div>
-        </div>
-        <div class="card answer title is-3" v-on:click="selectAnswer3">
-          <div class="card-content">
+          <div class="tile is-child box answer" v-on:click="selectAnswer3">
             <div class="media">
               <div class="media-left" v-if="isAnswer3Selected">
-            <span class="icon">
+              <span class="icon">
               <i class="fas fa-bullseye fa-1x"></i>
-            </span>
+              </span>
               </div>
               <div class="media-content">
                 Die dritte Antwort...
               </div>
             </div>
           </div>
-        </div>
-        <div>
-          <a class="button is-primary is-large next-answer"
-             v-on:click="nextQuestion">N&auml;chste Frage!</a>
+          <div class="tile is-child nobox">
+            <a class="button is-primary is-large next-answer"
+               v-on:click="nextQuestion">N&auml;chste Frage!</a>
+          </div>
         </div>
       </div>
     </div>
-
     <h1 class="title is-1">{{ msg }}</h1>
     <p class="is-2">
       bla bla bla
@@ -131,17 +129,24 @@
   @import '../mq'
 
   .answer
+    font-weight: 500
+    font-size: 1.5rem
     background-color: $light
     &:hover
       background-color: $primary
 
   .question
+    font-weight: 500
+    font-size: 1.5rem
     background-color: $light
     height: 100%
+    box-shadow: 0 0 0 1px #dbdbdb
+    border-radius: 6px
+    padding: 1.25rem
 
   .next-answer
     width: 100%
 
-  .tile
+  .nobox
     box-shadow: none
 </style>
