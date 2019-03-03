@@ -69,8 +69,8 @@ const store = new Vuex.Store({
     increment(state) {
       state.count += 1;
     },
-    incrementBy(state, n) {
-      state.count += n;
+    incrementBy(state, numberAnswer) {
+      state.count += numberAnswer;
     },
     nextQuestion(state) {
       state.quizState.question += 1;

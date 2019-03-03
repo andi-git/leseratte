@@ -45,74 +45,10 @@
           </div>
         </div>
         <div class="tile is-parent is-7 is-vertical">
-          <div class="tile is-child box answer" v-bind:class="{'is-active': answerSelected === 0}"
-               v-on:click="selectAnswer0">
-            <div class="media">
-              <div class="media-left" v-if="answerSelected === 0">
-                <span class="icon">
-                  <i class="fas fa-arrow-right fa-1x"></i>
-                </span>
-              </div>
-              <div class="media-left" v-if="answerSelected !== 0">
-                <span class="icon">
-                  <i class="fas fa-question fa-1x"></i>
-                </span>
-              </div>
-              <div class="media-content">
-                {{ answer0Text }}
-              </div>
-              <div class="media-right" v-if="answerSelected === 0">
-                <span class="icon">
-                  <i class="fas fa-arrow-left fa-1x"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="tile is-child box answer" v-bind:class="{'is-active': answerSelected === 1}"
-               v-on:click="selectAnswer1">
-            <div class="media">
-              <div class="media-left" v-if="answerSelected === 1">
-                <span class="icon">
-                  <i class="fas fa-arrow-right fa-1x"></i>
-                </span>
-              </div>
-              <div class="media-left" v-if="answerSelected !== 1">
-                <span class="icon">
-                  <i class="fas fa-question fa-1x"></i>
-                </span>
-              </div>
-              <div class="media-content">
-                {{ answer1Text }}
-              </div>
-              <div class="media-right" v-if="answerSelected === 1">
-                <span class="icon">
-                  <i class="fas fa-arrow-left fa-1x"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="tile is-child box answer" v-bind:class="{'is-active': answerSelected === 2}"
-               v-on:click="selectAnswer2">
-            <div class="media">
-              <div class="media-left" v-if="answerSelected === 2">
-                <span class="icon">
-                  <i class="fas fa-arrow-right fa-1x"></i>
-                </span>
-              </div>
-              <div class="media-left" v-if="answerSelected !== 2">
-                <span class="icon">
-                  <i class="fas fa-question fa-1x"></i>
-                </span>
-              </div>
-              <div class="media-content">
-                {{ answer2Text }}
-              </div>
-              <div class="media-right" v-if="answerSelected === 2">
-                <span class="icon">
-                  <i class="fas fa-arrow-left fa-1x"></i>
-                </span>
-              </div>
-            </div>
+          <div class="answer-box"
+               v-for="answer in answers"
+               :key="answer.id">
+            <Answer v-bind:id=answer.id></Answer>
           </div>
           <div class="tile is-child nobox" v-if="!isStateCheckAnswer">
             <a class="button is-primary is-large check-answer"
@@ -125,27 +61,21 @@
         </div>
       </div>
     </div>
-    <p>isStateCheckAnswer: {{ isStateCheckAnswer }}</p>
-    <p>answerSelected: {{ answerSelected }}</p>
   </div>
 </template>
 
 <script>
+  import Answer from '@/components/Answer.vue';
+
   export default {
     name: 'Welcome',
+    components: {
+      Answer,
+    },
     props: {
       msg: String,
     },
     methods: {
-      selectAnswer0() {
-        this.$store.commit('answerSelected', 0);
-      },
-      selectAnswer1() {
-        this.$store.commit('answerSelected', 1);
-      },
-      selectAnswer2() {
-        this.$store.commit('answerSelected', 2);
-      },
       nextQuestion() {
         this.$store.commit('nextQuestion');
       },
@@ -186,20 +116,14 @@
       questionText() {
         return this.currentQuestion.text;
       },
-      answer0Text() {
-        return this.currentQuestion.answers[0].text;
-      },
-      answer1Text() {
-        return this.currentQuestion.answers[1].text;
-      },
-      answer2Text() {
-        return this.currentQuestion.answers[2].text;
+      quizState() {
+        return this.$store.state.quizState;
       },
       isStateCheckAnswer() {
-        return this.$store.state.quizState.answerChecked;
+        return this.quizState.answerChecked;
       },
-      answerSelected() {
-        return this.$store.state.quizState.answerSelected;
+      answers() {
+        return this.currentQuestion.answers;
       },
     },
   };
@@ -211,13 +135,6 @@
   @import '../../node_modules/bulma/bulma.sass'
   @import '../mq'
 
-  .answer
-    font-weight: 500
-    font-size: 1.5rem
-    background-color: $light
-    &:hover
-      background-color: $primary
-
   .question
     font-weight: 500
     font-size: 1.5rem
@@ -226,6 +143,9 @@
     box-shadow: 0 0 0 1px #dbdbdb
     border-radius: 6px
     padding: 1.25rem
+
+  .answer-box
+    padding: 0 0 1em 0
 
   .question-number
     height: 100%
