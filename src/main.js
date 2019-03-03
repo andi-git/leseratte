@@ -8,10 +8,12 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    count: 0,
-    answerSelected: 'none',
-    currentQuiz: 0,
-    currentQuestion: 0,
+    quizState: {
+      current: 0,
+      question: 0,
+      answerSelected: -1,
+      answerChecked: false,
+    },
     quizzes: [
       {
         id: 0,
@@ -28,9 +30,9 @@ const store = new Vuex.Store({
             id: 0,
             text: 'Was macht Max mit dem Dinosaurierknochen?',
             answers: [
-              { id: 0, text: 'Er malt ihn braun an damit er schön alt aussieht.', correct: true },
-              { id: 1, text: 'Er wartet 1 Million Jahre damit er schön alt aussieht.', correct: false },
-              { id: 2, text: 'Er kocht damit eine köstliche Suppe.', correct: false },
+              { id: 0, text: 'Er malt ihn braun an, damit er alt aussieht.', correct: true },
+              { id: 1, text: 'Er wartet 1 Million Jahre, damit er alt aussieht.', correct: false },
+              { id: 2, text: 'Er kocht damit eine Suppe.', correct: false },
             ],
           },
           {
@@ -46,7 +48,7 @@ const store = new Vuex.Store({
             id: 2,
             text: 'Vertragen sich Max und Leon am Ende wieder?',
             answers: [
-              { id: 0, text: 'Nein, sie streiten ganz wild weiter.', correct: false },
+              { id: 0, text: 'Nein, sie streiten weiter.', correct: false },
               { id: 1, text: 'Ja, sie reichen sich die Hände.', correct: true },
               { id: 2, text: 'Nein, sie werden von einem Dinosaurier gefressen.', correct: false },
             ],
@@ -71,7 +73,15 @@ const store = new Vuex.Store({
       state.count += n;
     },
     nextQuestion(state) {
-      state.currentQuestion += 1;
+      state.quizState.question += 1;
+      state.quizState.answerChecked = false;
+      state.quizState.answerSelected = -1;
+    },
+    answerChecked(state) {
+      state.quizState.answerChecked = true;
+    },
+    answerSelected(state, n) {
+      state.quizState.answerSelected = n;
     },
   },
 });

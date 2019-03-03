@@ -45,15 +45,15 @@
           </div>
         </div>
         <div class="tile is-parent is-7 is-vertical">
-          <div class="tile is-child box answer " v-bind:class="{'is-active': isAnswer1Selected}"
-               v-on:click="selectAnswer1">
+          <div class="tile is-child box answer" v-bind:class="{'is-active': answerSelected === 0}"
+               v-on:click="selectAnswer0">
             <div class="media">
-              <div class="media-left" v-if="isAnswer1Selected">
+              <div class="media-left" v-if="answerSelected === 0">
                 <span class="icon">
                   <i class="fas fa-arrow-right fa-1x"></i>
                 </span>
               </div>
-              <div class="media-left" v-if="!isAnswer1Selected">
+              <div class="media-left" v-if="answerSelected !== 0">
                 <span class="icon">
                   <i class="fas fa-question fa-1x"></i>
                 </span>
@@ -61,22 +61,22 @@
               <div class="media-content">
                 {{ answer0Text }}
               </div>
-              <div class="media-right" v-if="isAnswer1Selected">
+              <div class="media-right" v-if="answerSelected === 0">
                 <span class="icon">
                   <i class="fas fa-arrow-left fa-1x"></i>
                 </span>
               </div>
             </div>
           </div>
-          <div class="tile is-child box answer" v-bind:class="{'is-active': isAnswer2Selected}"
-               v-on:click="selectAnswer2">
+          <div class="tile is-child box answer" v-bind:class="{'is-active': answerSelected === 1}"
+               v-on:click="selectAnswer1">
             <div class="media">
-              <div class="media-left" v-if="isAnswer2Selected">
+              <div class="media-left" v-if="answerSelected === 1">
                 <span class="icon">
                   <i class="fas fa-arrow-right fa-1x"></i>
                 </span>
               </div>
-              <div class="media-left" v-if="!isAnswer2Selected">
+              <div class="media-left" v-if="answerSelected !== 1">
                 <span class="icon">
                   <i class="fas fa-question fa-1x"></i>
                 </span>
@@ -84,22 +84,22 @@
               <div class="media-content">
                 {{ answer1Text }}
               </div>
-              <div class="media-right" v-if="isAnswer2Selected">
+              <div class="media-right" v-if="answerSelected === 1">
                 <span class="icon">
                   <i class="fas fa-arrow-left fa-1x"></i>
                 </span>
               </div>
             </div>
           </div>
-          <div class="tile is-child box answer" v-bind:class="{'is-active': isAnswer3Selected}"
-               v-on:click="selectAnswer3">
+          <div class="tile is-child box answer" v-bind:class="{'is-active': answerSelected === 2}"
+               v-on:click="selectAnswer2">
             <div class="media">
-              <div class="media-left" v-if="isAnswer3Selected">
+              <div class="media-left" v-if="answerSelected === 2">
                 <span class="icon">
                   <i class="fas fa-arrow-right fa-1x"></i>
                 </span>
               </div>
-              <div class="media-left" v-if="!isAnswer3Selected">
+              <div class="media-left" v-if="answerSelected !== 2">
                 <span class="icon">
                   <i class="fas fa-question fa-1x"></i>
                 </span>
@@ -107,20 +107,26 @@
               <div class="media-content">
                 {{ answer2Text }}
               </div>
-              <div class="media-right" v-if="isAnswer3Selected">
+              <div class="media-right" v-if="answerSelected === 2">
                 <span class="icon">
                   <i class="fas fa-arrow-left fa-1x"></i>
                 </span>
               </div>
             </div>
           </div>
-          <div class="tile is-child nobox">
+          <div class="tile is-child nobox" v-if="!isStateCheckAnswer">
+            <a class="button is-primary is-large check-answer"
+               v-on:click="answerChecked">Antwort!</a>
+          </div>
+          <div class="tile is-child nobox" v-if="isStateCheckAnswer">
             <a class="button is-primary is-large next-answer"
                v-on:click="nextQuestion">N&auml;chste Frage!</a>
           </div>
         </div>
       </div>
     </div>
+    <p>isStateCheckAnswer: {{ isStateCheckAnswer }}</p>
+    <p>answerSelected: {{ answerSelected }}</p>
   </div>
 </template>
 
@@ -130,31 +136,21 @@
     props: {
       msg: String,
     },
-    data() {
-      return {
-        isAnswer1Selected: false,
-        isAnswer2Selected: false,
-        isAnswer3Selected: false,
-      };
-    },
     methods: {
+      selectAnswer0() {
+        this.$store.commit('answerSelected', 0);
+      },
       selectAnswer1() {
-        this.isAnswer1Selected = true;
-        this.isAnswer2Selected = false;
-        this.isAnswer3Selected = false;
+        this.$store.commit('answerSelected', 1);
       },
       selectAnswer2() {
-        this.isAnswer1Selected = false;
-        this.isAnswer2Selected = true;
-        this.isAnswer3Selected = false;
-      },
-      selectAnswer3() {
-        this.isAnswer1Selected = false;
-        this.isAnswer2Selected = false;
-        this.isAnswer3Selected = true;
+        this.$store.commit('answerSelected', 2);
       },
       nextQuestion() {
         this.$store.commit('nextQuestion');
+      },
+      answerChecked() {
+        this.$store.commit('answerChecked');
       },
     },
     computed: {
@@ -166,7 +162,7 @@
       },
       currentQuiz() {
         return this.$store.state.quizzes
-          .find(quiz => quiz.id === this.$store.state.currentQuiz);
+          .find(quiz => quiz.id === this.$store.state.quizState.current);
       },
       quizImage() {
         return `../books/${this.currentQuiz.image}`;
@@ -179,7 +175,7 @@
       },
       currentQuestion() {
         return this.currentQuiz.questions
-          .find(question => question.id === this.$store.state.currentQuestion);
+          .find(question => question.id === this.$store.state.quizState.question);
       },
       questionNumber() {
         return this.currentQuestion.id + 1;
@@ -198,6 +194,12 @@
       },
       answer2Text() {
         return this.currentQuestion.answers[2].text;
+      },
+      isStateCheckAnswer() {
+        return this.$store.state.quizState.answerChecked;
+      },
+      answerSelected() {
+        return this.$store.state.quizState.answerSelected;
       },
     },
   };
@@ -229,6 +231,9 @@
     height: 100%
 
   .next-answer
+    width: 100%
+
+  .check-answer
     width: 100%
 
   .nobox
