@@ -9,8 +9,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     quizState: {
-      current: 0,
-      question: 0,
+      current: -1,
+      question: -1,
       answerSelected: -1,
       answerChecked: false,
     },
@@ -66,6 +66,13 @@ const store = new Vuex.Store({
     },
   },
   mutations: {
+    initQuiz(state, quizId) {
+      console.log(`init quiz ${quizId}`);
+      state.quizState.current = Number(quizId);
+      state.quizState.question = 0;
+      state.quizState.answerSelected = -1;
+      state.quizState.answerChecked = false;
+    },
     increment(state) {
       state.count += 1;
     },

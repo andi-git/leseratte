@@ -2,25 +2,31 @@
   <div id="app">
     <nav class="navbar is-transparent">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/">
+        <router-link class="navbar-item" to="/">
           <img src="leseratte_logo_text.png" alt="LESERATTE">
-        </a>
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample"
-             v-on:click="toggleNav" v-bind:class="{ 'is-active': isActive }">
+        </router-link>
+        <div class="navbar-burger burger"
+             data-target="navbarExampleTransparentExample"
+             v-on:click="toggleNav"
+             v-bind:class="{ 'is-active': isActive }">
           <span></span>
           <span></span>
           <span></span>
         </div>
       </div>
-      <div id="navbarExampleTransparentExample" class="navbar-menu"
+      <div id="navbarExampleTransparentExample"
+           class="navbar-menu"
            v-bind:class="{ 'is-active': isActive }">
         <div class="navbar-start">
-          <a class="navbar-item" href="https://bulma.io/">
+          <router-link to="/" class="navbar-item" >
             Home
-          </a>
-          <a class="navbar-item" href="https://bulma.io/">
-            B&uuml;cher
-          </a>
+          </router-link>
+          <router-link to="/books" class="navbar-item" >
+            Bücher
+          </router-link>
+          <router-link to="/about" class="navbar-item" >
+            Über
+          </router-link>
         </div>
         <div class="navbar-end">
           <div class="navbar-item">

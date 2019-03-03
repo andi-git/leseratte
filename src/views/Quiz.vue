@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome">
+  <div class="quiz">
     <div class="tile is-ancestor nobox">
       <div class="tile is-parent is-2 has-text-centered nobox">
         <article class="tile is-child nobox">
@@ -68,12 +68,15 @@
   import Answer from '@/components/Answer.vue';
 
   export default {
-    name: 'Welcome',
+    name: 'Quiz',
+    created() {
+      this.$store.commit('initQuiz', this.$route.query.quizId);
+    },
     components: {
       Answer,
     },
     props: {
-      msg: String,
+      id: Number,
     },
     methods: {
       nextQuestion() {
@@ -84,12 +87,6 @@
       },
     },
     computed: {
-      count() {
-        return this.$store.state.count;
-      },
-      currentQuestionText() {
-        return this.$store.state.currentQuestionText;
-      },
       currentQuiz() {
         return this.$store.state.quizzes
           .find(quiz => quiz.id === this.$store.state.quizState.current);

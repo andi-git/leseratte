@@ -1,22 +1,25 @@
 <template>
   <div class="home">
-    <!--<img alt="Vue logo" src="../assets/leseratte.jpg">-->
-    <Welcome msg="Hallo du kleine LESERATTE!"/>
+    <div class="has-text-centered">
+      <figure>
+        <img src="../assets/leseratte.png"/>
+      </figure>
+      <p class="title is-1">Hallo du kleine LESERATTE!</p>
+      <p class="subtitle is-1">Lies ein Buch und such dir dann ein
+        <router-link to="/books">Quiz</router-link> aus!
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
-  // @ is an alias to /src
-  import Welcome from '@/components/Welcome.vue';
-
   export default {
     name: 'home',
-    components: {
-      Welcome,
-    },
   };
 </script>
 
 <style lang="sass" scoped>
+  @import '../../node_modules/bulmaswatch/cerulean/bulmaswatch.scss'
+  @import '../../node_modules/bulma/bulma.sass'
   @import '../mq'
 </style>
