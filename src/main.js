@@ -13,6 +13,7 @@ const store = new Vuex.Store({
       question: -1,
       answerSelected: -1,
       answerChecked: false,
+      answerOk: false,
     },
     quizzes: [
       {
@@ -103,6 +104,12 @@ const store = new Vuex.Store({
       state.quizState.answerSelected = -1;
     },
     answerChecked(state) {
+      const currentQuiz = state.quizzes.find(quiz => quiz.id === state.quizState.current);
+      const currentQuestion = currentQuiz.questions
+        .find(question => question.id === state.quizState.question);
+      const currentAnswer = currentQuestion.answers
+        .find(answer => answer.id === state.quizState.answerSelected);
+      state.quizState.answerOk = currentAnswer.correct;
       state.quizState.answerChecked = true;
     },
     answerSelected(state, n) {

@@ -49,6 +49,7 @@
 
   .book
     padding: 1.25rem
+    margin-bottom: 1em
     background-color: $light
     &:hover
       background-color: $primary

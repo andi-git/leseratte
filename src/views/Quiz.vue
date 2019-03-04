@@ -52,13 +52,45 @@
                :key="answer.id">
             <Answer v-bind:id=answer.id></Answer>
           </div>
-          <div class="tile is-child nobox" v-if="!isStateCheckAnswer">
-            <a class="button is-primary is-large check-answer"
-               v-on:click="answerChecked">Antwort!</a>
+          <div class="tile check-answer has-text-centered"
+               v-if="isAnswerSelected"
+               v-on:click="answerChecked">
+            Antwort!
           </div>
-          <div class="tile is-child nobox" v-if="isStateCheckAnswer">
-            <a class="button is-primary is-large next-answer"
-               v-on:click="nextQuestion">N&auml;chste Frage!</a>
+          <div class="tile check-answer-disabled has-text-centered"
+               v-if="isNoAnswerSelected">
+            Antwort!
+          </div>
+          <div class="tile nobox">
+            <div class="tile is-child answer-ok" v-if="isAnswerOk">
+              <div class="media">
+                <div class="media-left">
+                  <span class="icon">
+                    <i class="fas fa-check-circle fa-1x"></i>
+                  </span>
+                </div>
+                <div class="media-content">
+                  SUPER!
+                </div>
+              </div>
+            </div>
+            <div class="tile is-child answer-wrong" v-if="isAnswerWrong">
+              <div class="media">
+                <div class="media-left">
+                  <span class="icon">
+                    <i class="fas fa-times-circle fa-1x"></i>
+                  </span>
+                </div>
+                <div class="media-content">
+                  Leider falsch!
+                </div>
+              </div>
+            </div>
+            <div class="tile is-child next-answer"
+                 v-if="isStateCheckAnswer"
+                 v-on:click="nextQuestion">
+              N&auml;chste Frage!
+            </div>
           </div>
         </div>
       </div>
@@ -121,6 +153,18 @@
       isStateCheckAnswer() {
         return this.quizState.answerChecked;
       },
+      isAnswerSelected() {
+        return !this.quizState.answerChecked && this.quizState.answerSelected > -1;
+      },
+      isNoAnswerSelected() {
+        return !this.quizState.answerChecked && this.quizState.answerSelected === -1;
+      },
+      isAnswerOk() {
+        return this.isStateCheckAnswer && this.quizState.answerOk === true;
+      },
+      isAnswerWrong() {
+        return this.isStateCheckAnswer && this.quizState.answerOk === false;
+      },
       answers() {
         return this.currentQuestion.answers;
       },
@@ -149,11 +193,31 @@
   .question-number
     height: 100%
 
-  .next-answer
+  .control-element
+    @extend .box
+    color: $light
+    background-color: $primary
+    font-weight: 500
+    font-size: 1.5rem
+    text-align: center
     width: 100%
+    margin: 0 0 0 0 !important
+    &:hover
+      background-color: $primary-dark
+
+  .next-answer
+    @extend .control-element
+    margin-left: 0.2em !important
 
   .check-answer
-    width: 100%
+    @extend .control-element
+
+  .check-answer-disabled
+    @extend .control-element
+    color: white
+    background-color: $light
+    &:hover
+      background-color: $light
 
   .nobox
     box-shadow: none
@@ -161,5 +225,19 @@
   .is-active
     background-color: $primary
     color: white
+
+  .answer-ok
+    @extend .control-element
+    background-color: green
+    color: white
+    &:hover
+      background-color: green
+
+  .answer-wrong
+    @extend .control-element
+    background-color: red
+    color: white
+    &:hover
+      background-color: red
 
 </style>

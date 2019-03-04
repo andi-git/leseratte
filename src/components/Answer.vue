@@ -1,5 +1,5 @@
 <template>
-  <div class="tile is-child box answer"
+  <div class="tile is-child answer"
        v-bind:class="{'is-active': answerSelected === id}"
        v-on:click="selectAnswer">
     <div class="media">
@@ -65,6 +65,7 @@
   @import '../mq'
 
   .answer
+    @extend .box
     font-weight: 500
     font-size: 1.5rem
     padding: 1.25rem
