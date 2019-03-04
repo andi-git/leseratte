@@ -99,11 +99,13 @@
 </template>
 
 <script>
-  import Answer from '@/components/Answer.vue';
+  import Answer from '../components/Answer.vue';
 
+  // noinspection JSUnusedGlobalSymbols
   export default {
     name: 'Quiz',
     created() {
+      // noinspection JSUnresolvedVariable
       this.$store.commit('initQuiz', this.$route.query.quizId);
     },
     components: {
