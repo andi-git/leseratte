@@ -2,9 +2,11 @@
   <div class="quiz">
     <div class="tile is-ancestor nobox">
       <div class="tile is-parent is-2 has-text-centered nobox">
-        <article class="tile is-child nobox">
-          <img v-bind:src="quizImage"/>
-        </article>
+        <div class="tile is-child nobox">
+          <figure class="image">
+            <img v-bind:src="quizImage"/>
+          </figure>
+        </div>
       </div>
       <div class="tile is-parent is-4">
         <article class="tile is-child nobox">

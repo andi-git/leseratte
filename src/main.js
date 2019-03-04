@@ -55,6 +55,24 @@ const store = new Vuex.Store({
           },
         ],
       },
+      {
+        id: 1,
+        bookName: 'Drachengeschichten',
+        publisher: 'Lesetiger',
+        image: 'lesetiger_drachengeschichten.jpg',
+        summary: 'Drache Drago ist hellauf entzückt: seine kleine Schwester Dragolella ist endlich aus dem Eit geschlüpft. Als großer Bruder erklärt er ihr stolz alles über das Feuerspucken und fliegen. Knappe Henri dagegen fürchtet sich vor feuerspeienden Drachen, bis er mitten im Wald einen kennenlernt, der ihn sogar auf seinem Rücken mitnimmt!',
+        questions: [
+          {
+            id: 0,
+            text: 'Wie heißt die Schwester von Drago?',
+            answers: [
+              { id: 0, text: 'Dragonella.', correct: true },
+              { id: 1, text: 'Mia.', correct: false },
+              { id: 2, text: 'Kleiner Schreihals.', correct: false },
+            ],
+          },
+        ],
+      },
     ],
   },
   getters: {
