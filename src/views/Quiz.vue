@@ -46,7 +46,7 @@
             </div>
           </div>
         </div>
-        <div class="tile is-parent is-7 is-vertical">
+        <div class="tile is-parent is-7 is-vertical" v-if="!finished">
           <div class="answer-box"
                v-for="answer in answers"
                :key="answer.id">
@@ -87,11 +87,25 @@
               </div>
             </div>
             <div class="tile is-child next-answer"
-                 v-if="isStateCheckAnswer"
+                 v-if="isStateCheckAnswer && !lastAnswer"
                  v-on:click="nextQuestion">
               N&auml;chste Frage!
             </div>
+            <div class="tile is-child next-answer"
+                 v-if="isStateCheckAnswer && lastAnswer"
+                 v-on:click="finish">
+              FERTIG!
+            </div>
           </div>
+        </div>
+        <div class="tile is-parent is-7 is-vertical" v-if="finished">
+          <p class="title is-1">SUPER GEMACHT</p>
+          <p class="title is-3">Du hast {{ answersCorrect }} Fragen richtig beantwortet!</p>
+          <p class="title is-3">Dafür bekommst du {{ answersCorrect * 10 }} Punkte!</p>
+          <br>
+          <p class="subtitle is-5">Mach doch gleich noch ein
+            <router-link to="/books">Quiz</router-link>!
+          </p>
         </div>
       </div>
     </div>
@@ -120,6 +134,9 @@
       },
       answerChecked() {
         this.$store.commit('answerChecked');
+      },
+      finish() {
+        this.$store.commit('finish');
       },
     },
     computed: {
@@ -170,6 +187,15 @@
       answers() {
         return this.currentQuestion.answers;
       },
+      answersCorrect() {
+        return this.quizState.answerCorrectCount;
+      },
+      lastAnswer() {
+        return this.questionNumber === this.currentQuiz.questions.length;
+      },
+      finished() {
+        return this.quizState.finish;
+      },
     },
   };
 </script>
@@ -185,7 +211,7 @@
     font-size: 1.5rem
     background-color: $light
     height: 100%
-    box-shadow: 0 0 0 1px $grey
+    box-shadow: 0 0 0 1px $grey-dark
     border-radius: 6px
     padding: 1.25rem
 

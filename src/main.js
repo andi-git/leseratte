@@ -14,6 +14,8 @@ const store = new Vuex.Store({
       answerSelected: -1,
       answerChecked: false,
       answerOk: false,
+      answerCorrectCount: 0,
+      finish: false,
     },
     quizzes: [
       {
@@ -91,6 +93,8 @@ const store = new Vuex.Store({
       state.quizState.question = 0;
       state.quizState.answerSelected = -1;
       state.quizState.answerChecked = false;
+      state.quizState.answerCorrectCount = 0;
+      state.quizState.finish = false;
     },
     increment(state) {
       state.count += 1;
@@ -104,13 +108,19 @@ const store = new Vuex.Store({
       state.quizState.answerSelected = -1;
     },
     answerChecked(state) {
+      state.quizState.answerChecked = true;
       const currentQuiz = state.quizzes.find(quiz => quiz.id === state.quizState.current);
       const currentQuestion = currentQuiz.questions
         .find(question => question.id === state.quizState.question);
       const currentAnswer = currentQuestion.answers
         .find(answer => answer.id === state.quizState.answerSelected);
       state.quizState.answerOk = currentAnswer.correct;
-      state.quizState.answerChecked = true;
+      if (state.quizState.answerOk) {
+        state.quizState.answerCorrectCount += 1;
+      }
+    },
+    finish(state) {
+      state.quizState.finish = true;
     },
     answerSelected(state, n) {
       state.quizState.answerSelected = n;
