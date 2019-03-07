@@ -28,22 +28,22 @@
             Über
           </router-link>
         </div>
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="field is-grouped">
-              <p class="control">
-                <a class="button is-primary">
-                  <span class="icon">
-                    <i class="fas fa-sign-in-alt"></i>
-                  </span>
-                  <span>
-                    Einloggen
-                  </span>
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
+        <!--<div class="navbar-end">-->
+          <!--<div class="navbar-item">-->
+            <!--<div class="field is-grouped">-->
+              <!--<p class="control">-->
+                <!--<a class="button is-primary">-->
+                  <!--<span class="icon">-->
+                    <!--<i class="fas fa-sign-in-alt"></i>-->
+                  <!--</span>-->
+                  <!--<span>-->
+                    <!--Einloggen-->
+                  <!--</span>-->
+                <!--</a>-->
+              <!--</p>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
     </nav>
 
