@@ -185,7 +185,7 @@
     font-size: 1.5rem
     background-color: $light
     height: 100%
-    box-shadow: 0 0 0 1px #dbdbdb
+    box-shadow: 0 0 0 1px $grey
     border-radius: 6px
     padding: 1.25rem
 
@@ -197,7 +197,7 @@
 
   .control-element
     @extend .box
-    color: $light
+    color: $primary-invert
     background-color: $primary
     font-weight: 500
     font-size: 1.5rem
@@ -205,6 +205,7 @@
     width: 100%
     margin: 0 0 0 0 !important
     &:hover
+      color: $primary-invert
       background-color: $primary-dark
 
   .next-answer
@@ -216,7 +217,7 @@
 
   .check-answer-disabled
     @extend .control-element
-    color: white
+    color: $white
     background-color: $light
     &:hover
       background-color: $light
@@ -226,20 +227,20 @@
 
   .is-active
     background-color: $primary
-    color: white
+    color: $light
 
   .answer-ok
     @extend .control-element
-    background-color: green
-    color: white
+    background-color: $green
+    color: $light
     &:hover
-      background-color: green
+      background-color: $green
 
   .answer-wrong
     @extend .control-element
-    background-color: red
-    color: white
+    background-color: $red
+    color: $light
     &:hover
-      background-color: red
+      background-color: $red
 
 </style>

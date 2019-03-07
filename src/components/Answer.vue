@@ -1,6 +1,11 @@
 <template>
   <div class="tile is-child answer"
-       v-bind:class="{'is-active': answerSelected === id}"
+       v-bind:class="{
+       'is-active': answerSelected === id,
+       'answer-selected-and-correct': answerSelectedAndCorrect(id),
+       'answer-not-selected-and-not-correct': answerNotSelectedAndNotCorrect(id),
+       'answer-selected-and-not-correct': answerSelectedAndNotCorrect(id),
+       'answer-not-selected-and-correct': answerNotSelectedAndCorrect(id)}"
        v-on:click="selectAnswer">
     <div class="media">
       <div class="media-left" v-if="answerSelected(id)">
@@ -111,36 +116,42 @@
     font-weight: 500
     font-size: 1.5rem
     padding: 1.25rem
+    color: $light-invert
     background-color: $light
     &:hover
+      color: $primary-invert
       background-color: $primary
 
   .answer-selected-and-correct
     @extend .answer
-    background-color: green
+    color: $green-invert
+    background-color: $green
     &:hover
-      background-color: green
+      background-color: $green
 
   .answer-selected-and-not-correct
     @extend .answer
-    background-color: red
+    color: $red-invert
+    background-color: $red
     &:hover
-      background-color: red
+      background-color: $red
 
   .answer-not-selected-and-correct
     @extend .answer
-    background-color: yellow
+    color: $yellow-invert
+    background-color: $yellow
     &:hover
-      background-color: yellow
+      background-color: $yellow
 
   .answer-not-selected-and-not-correct
     @extend .answer
+    color: $light-invert
     background-color: $light
     &:hover
       background-color: $light
 
   .is-active
     background-color: $primary
-    color: white
+    color: $light
 
 </style>
