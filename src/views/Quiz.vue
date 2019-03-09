@@ -101,7 +101,7 @@
         <div class="tile is-parent is-7 is-vertical" v-if="finished">
           <p class="title is-1">SUPER GEMACHT</p>
           <p class="title is-3">Du hast {{ answersCorrect }} Fragen richtig beantwortet!</p>
-          <p class="title is-3">Dafür bekommst du {{ answersCorrect * 10 }} Punkte!</p>
+          <p class="title is-3">Dafür bekommst du {{ answersCorrect * quizLevel }} Punkte!</p>
           <br>
           <p class="subtitle is-5">Mach doch gleich noch ein
             <router-link to="/books">Quiz</router-link>!
@@ -189,6 +189,9 @@
       },
       answersCorrect() {
         return this.quizState.answerCorrectCount;
+      },
+      quizLevel() {
+        return this.currentQuiz.level;
       },
       lastAnswer() {
         return this.questionNumber === this.currentQuiz.questions.length;

@@ -23,6 +23,7 @@ const store = new Vuex.Store({
         bookName: 'Dinosauriergeschichten',
         publisher: 'Lesetiger',
         image: 'lesetiger_dinosauriergeschichten.jpg',
+        level: 1,
         summary: 'Als Pia das große braune Ei auf dem Markt entdeckt, ist ihr sofort klar: Damit muss es'
         + '            etwas Besonderes auf sich haben. Und tatsächlich schlüpft mitten in der Nacht ein echter'
         + '            Dinosaurier heraus!'
@@ -126,6 +127,7 @@ const store = new Vuex.Store({
         bookName: 'Drachengeschichten',
         publisher: 'Lesetiger',
         image: 'lesetiger_drachengeschichten.jpg',
+        level: 1,
         summary: 'Drache Drago ist hellauf entzückt: seine kleine Schwester Dragonella ist endlich aus dem Eit geschlüpft. Als großer Bruder erklärt er ihr stolz alles über das Feuerspucken und fliegen. Knappe Henri dagegen fürchtet sich vor feuerspeienden Drachen, bis er mitten im Wald einen kennenlernt, der ihn sogar auf seinem Rücken mitnimmt!',
         questions: [
           {
