@@ -56,6 +56,69 @@ const store = new Vuex.Store({
               { id: 2, text: 'Nein, sie werden von einem Dinosaurier gefressen.', correct: false },
             ],
           },
+          {
+            id: 3,
+            text: 'Wohin legt Pia das Ei?',
+            answers: [
+              { id: 0, text: 'Auf die Fensterbank.', correct: true },
+              { id: 1, text: 'Unter den Polster.', correct: false },
+              { id: 2, text: 'In das Klo.', correct: false },
+            ],
+          },
+          {
+            id: 4,
+            text: 'Was kommt aus dem Ei heraus?',
+            answers: [
+              { id: 0, text: 'Ein Hase.', correct: false },
+              { id: 1, text: 'Ein Kücken.', correct: false },
+              { id: 2, text: 'Ein Dinosaurier.', correct: true },
+            ],
+          },
+          {
+            id: 5,
+            text: 'Was isst der Dinosaurier am liebsten?',
+            answers: [
+              { id: 0, text: 'Sushi.', correct: false },
+              { id: 1, text: 'Pflanzen.', correct: true },
+              { id: 2, text: 'Kleine Kinder.', correct: false },
+            ],
+          },
+          {
+            id: 6,
+            text: 'Welches Tier hat Trixi am liebsten?',
+            answers: [
+              { id: 0, text: 'Einen Elefantenrüssel-Dinosaurier.', correct: false },
+              { id: 1, text: 'Einen Entenschnabel-Dinosaurier.', correct: true },
+              { id: 2, text: 'Einen Katzenpfoten-Dinosaurier.', correct: false },
+            ],
+          },
+          {
+            id: 7,
+            text: 'Woher weiß Trixi so viel über Dinosaurier?',
+            answers: [
+              { id: 0, text: 'Von ihrer Oma.', correct: true },
+              { id: 1, text: 'Weil 100 Millionen Jahre alt ist.', correct: false },
+              { id: 2, text: 'Weil sie einen Dinosaurier als Haustier hat.', correct: false },
+            ],
+          },
+          {
+            id: 8,
+            text: 'Was sieht Tobi im Sand??',
+            answers: [
+              { id: 0, text: 'Eine Muschel.', correct: false },
+              { id: 1, text: 'Ein Stück Butter.', correct: false },
+              { id: 2, text: 'Einen Langhals-Saurier.', correct: true },
+            ],
+          },
+          {
+            id: 9,
+            text: 'Was sieht Tobi am Boden?',
+            answers: [
+              { id: 0, text: 'Einen Dinosaurier-Zahn.', correct: false },
+              { id: 1, text: 'Einen Schnuller.', correct: true },
+              { id: 2, text: 'Seinen Schatten.', correct: false },
+            ],
+          },
         ],
       },
       {
